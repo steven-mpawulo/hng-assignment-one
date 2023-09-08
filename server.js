@@ -18,8 +18,8 @@ app.get('/api', (req, res) => {
         "current_day": dayOfTheWeek,
         "utc_time": date,
         "track": track,
-        "github_file_url": "https://github.com/username/repo/blob/main/file_name.ext",
-        "github_repo_url": "https://github.com/username/repo",
+        "github_file_url": "https://github.com/steven-mpawulo/hng-assignment-one/blob/main/server.js",
+        "github_repo_url": "https://github.com/steven-mpawulo/hng-assignment-one",
         "status_code": 200
       });
 
