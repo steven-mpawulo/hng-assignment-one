@@ -5,9 +5,9 @@ const app = express();
 const port = process.env.PORT || 5001;
 app.get('/api', (req, res) => {
     const slack_name = req.query.slack_name;
-    console.log(slack_name);
+    // console.log(slack_name);
     const track = req.query.track;
-    console.log(track);
+    // console.log(track);
     if (slack_name && track) {
         const daysOfTheWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const date = new Date();
@@ -29,5 +29,5 @@ app.get('/api', (req, res) => {
     
 });
 app.listen(port, () => {
-    console.log(`Server started at port: ${port}`);
+    // console.log(`Server started at port: ${port}`);
 });
