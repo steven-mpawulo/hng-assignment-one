@@ -8,11 +8,12 @@ app.get('/api', (req, res) => {
     console.log(slack_name);
     const track = req.query.track;
     console.log(track);
-    const daysOfTheWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
+    if (slack_name && track) {
+        const daysOfTheWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const date = new Date();
     const day = date.getDay();
     const dayOfTheWeek = daysOfTheWeek[day];
-    res.json({
+    res.status(200).json({
         "slack_name": slack_name,
         "current_day": dayOfTheWeek,
         "utc_time": date,
@@ -21,6 +22,11 @@ app.get('/api', (req, res) => {
         "github_repo_url": "https://github.com/username/repo",
         "status_code": 200
       });
+
+    } else {
+        res.status(400).json({"message": "please provide slack name and track"});
+    }
+    
 });
 app.listen(port, () => {
     console.log(`Server started at port: ${port}`);
