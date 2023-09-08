@@ -11,12 +11,13 @@ app.get('/api', (req, res) => {
     if (slack_name && track) {
         const daysOfTheWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const date = new Date();
+    const formatedDate = date.toISOString();
     const day = date.getDay();
     const dayOfTheWeek = daysOfTheWeek[day];
     res.status(200).json({
         "slack_name": slack_name,
         "current_day": dayOfTheWeek,
-        "utc_time": date,
+        "utc_time": formatedDate,
         "track": track,
         "github_file_url": "https://github.com/steven-mpawulo/hng-assignment-one/blob/main/server.js",
         "github_repo_url": "https://github.com/steven-mpawulo/hng-assignment-one",
