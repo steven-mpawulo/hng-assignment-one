@@ -11,13 +11,24 @@ app.get('/api', (req, res) => {
     if (slack_name && track) {
         const daysOfTheWeek = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
     const date = new Date();
-    const formatedDate = date.toISOString();
+    // const formatedDate = date.toISOString();
+    function getUTCDateString(date) {
+        const year = date.getUTCFullYear();
+        const month = String(date.getUTCMonth() + 1).padStart(2, "0"); // Months are zero-based
+        const day = String(date.getUTCDate()).padStart(2, "0");
+        const hours = String(date.getUTCHours()).padStart(2, "0");
+        const minutes = String(date.getUTCMinutes()).padStart(2, "0");
+        const seconds = String(date.getUTCSeconds()).padStart(2, "0");
+  
+        return `${year}-${month}-${day}T${hours}:${minutes}:${seconds}Z`;
+      }
+      const newFormatedDate = getUTCDateString(date);
     const day = date.getDay();
     const dayOfTheWeek = daysOfTheWeek[day];
     res.status(200).json({
         "slack_name": slack_name,
         "current_day": dayOfTheWeek,
-        "utc_time": formatedDate,
+        "utc_time": newFormatedDate,
         "track": track,
         "github_file_url": "https://github.com/steven-mpawulo/hng-assignment-one/blob/main/server.js",
         "github_repo_url": "https://github.com/steven-mpawulo/hng-assignment-one",
